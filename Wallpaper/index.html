@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Net Studio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&amp;family=Cinzel:wght@500&amp;family=Roboto:wght@300&amp;family=Poppins:wght@500;600;800&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      box-sizing: border-box;
+      font-family: "Poppins", "Roboto", sans-serif;
+    }
+
+    .container {
+      text-align: center;
+      padding: 0 20px;
+      max-width: 10000px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-weight: normal;
+      font-size: 40px;
+      position: relative;
+      margin: 40px 0;
+    }
+
+    h2::before {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 3px;
+      background-color: darkslateblue;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: animate 4s linear infinite;
+    }
+
+    @keyframes animate {
+      0% {
+        width: 100px;
+      }
+
+      50% {
+        width: 200px;
+      }
+
+      100% {
+        width: 100px;
+      }
+    }
+
+    .top-content {
+      background-color: aliceblue;
+      width: 90%;
+      margin: 0 auto 20px auto;
+      height: 60px;
+      display: flex;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 3px 3px 5px rgb(194, 215, 253);
+    }
+
+    h3 {
+      height: 100%;
+      background-color: azure(221, 221, 221);
+      line-height: 60px;
+      padding: 0 50px;
+      color: rgb(101, 125, 206);
+    }
+
+    label {
+      display: inline-block;
+      height: 100%;
+      margin: 0 20px;
+      line-height: 60px;
+      font-size: 18px;
+      color: gray;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+    label:hover {
+      color: black;
+    }
+
+    .photo-gallery {
+      width: 90%;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px;
+    }
+
+    .pic {
+      position: relative;
+      height: 230px;
+      border-radius: 10px;
+      box-shadow: 3px 3px 5px rgb(191, 201, 204);
+      transition: 0.5s;
+      overflow: hidden;
+    }
+
+    .pic img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      transition: 0.5s;
+    }
+
+    .pic .download {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 5px;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .pic:hover .download {
+      opacity: 1;
+    }
+
+    .pic .download a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .pic .download i {
+      font-size: 20px;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    #check1:checked~.container .photo-gallery .pic {
+      opacity: 1;
+      transform: scale(1);
+      position: relative;
+      transition: 0.5s;
+    }
+
+    #check2:checked~.container .photo-gallery .nature {
+      transform: scale(1);
+      opacity: 1;
+      position: relative;
+    }
+
+    #check2:checked~.container .photo-gallery .anime,
+    #check2:checked~.container .photo-gallery .gaming,
+    #check2:checked~.container .photo-gallery .cute,
+    #check2:checked~.container .photo-gallery .black {
+      opacity: 0;
+      transform: scale(0);
+      position: absolute;
+      transition: 0s;
+    }
+
+    #check3:checked~.container .photo-gallery .anime {
+      transform: scale(1);
+      opacity: 1;
+      position: relative;
+    }
+
+    #check3:checked~.container .photo-gallery .nature,
+    #check3:checked~.container .photo-gallery .gaming,
+    #check3:checked~.container .photo-gallery .cute,
+    #check3:checked~.container .photo-gallery .black {
+      opacity: 0;
+      transform: scale(0);
+      position: absolute;
+      transition: 0s;
+    }
+
+    #check4:checked~.container .photo-gallery .gaming {
+      transform: scale(1);
+      opacity: 1;
+      position: relative;
+    }
+
+    #check4:checked~.container .photo-gallery .nature,
+    #check4:checked~.container .photo-gallery .anime,
+    #check4:checked~.container .photo-gallery .cute,
+    #check4:checked~.container .photo-gallery .black {
+      opacity: 0;
+      transform: scale(0);
+      position: absolute;
+      transition: 0s;
+    }
+
+    #check5:checked~.container .photo-gallery .cute {
+      transform: scale(1);
+      opacity: 1;
+      position: relative;
+    }
+
+    #check5:checked~.container .photo-gallery .nature,
+    #check5:checked~.container .photo-gallery .anime,
+    #check5:checked~.container .photo-gallery .gaming,
+    #check5:checked~.container .photo-gallery .black {
+      opacity: 0;
+      transform: scale(0);
+      position: absolute;
+      transition: 0s;
+    }
+
+    #check6:checked~.container .photo-gallery .black {
+      transform: scale(1);
+      opacity: 1;
+      position: relative;
+    }
+
+    #check6:checked~.container .photo-gallery .nature,
+    #check6:checked~.container .photo-gallery .anime,
+    #check6:checked~.container .photo-gallery .gaming,
+    #check6:checked~.container .photo-gallery .cute {
+      opacity: 0;
+      transform: scale(0);
+      position: absolute;
+      transition: 0s;
+    }
+
+    footer {
+      align-items: center;
+      text-align: center;
+      padding: 80px 0;
+      background: #dbe2f5;
+      margin: 6% 5% 0;
+      box-shadow: 3px 3px 5px rgb(209, 212, 219);
+      border-radius: 10px;
+    }
+
+    footer p {
+      color: #3b79cb;
+      padding-top: 10px;
+    }
+
+    footer ul {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    footer ul li {
+      list-style-type: none;
+      margin: 0 10px;
+    }
+
+    .logo {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .logo img,
+    .logo-text {
+      width: 60px;
+      height: 50px;
+      vertical-align: middle;
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
+    }
+
+    .expanded-container {
+      width: 90%;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 3px 3px 5px rgb(194, 215, 253);
+    }
+
+    .highlight {
+      background-color: black;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .top-content {
+        flex-direction: column;
+      }
+
+      .photo-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pic {
+        height: 150px;
+      }
+
+      .pic .download {
+        top: 5px;
+        right: 5px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      h3 {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <a href="#">
+        <img src="Image/NetTech.png" alt="Logo" />
+        <span class="logo-text">Net Studio</span>
+      </a>
+    </div>
+  </header>
+  <section>
+    <div class="container">
+      <div class="wall">
+        <h2>HD Wallpapers</h2>
+        <p style="padding-bottom: 20px ;">Cluster of great HD wallpapers</p>
+      </div>
+    </div>
+    <input type="radio" name="Photos" id="check1" checked>
+
+    <input type="radio" name="Photos" id="check2">
+
+    <input type="radio" name="Photos" id="check3">
+
+    <input type="radio" name="Photos" id="check4">
+    <input type="radio" name="Photos" id="check5">
+    <input type="radio" name="Photos" id="check6">
+
+
+    <div class="container">
+      <div class="top-content">
+        <h3>Net Studio</h3>
+
+        <label for="check1">All Wallpapers</label>
+        <label for="check2">Nature </label>
+        <label for="check3">Anime </label>
+        <label for="check4">Gaming </label>
+        <label for="check5">Cute Animal </label>
+        <label for="check6">black</label>
+      </div>
+
+      <div class="photo-gallery">
+        <div class="pic">
+          <img src="Image/image1.jpg" />
+          <div class="download">
+            <a href="Images/image1.jpg" download="image1.jpg" onclick="highlightContainer(this)">
+              <i class="fa fa-download"></i>
+            </a>
+          </div>
+        </div>
+        <div class="pic nature">
+          <img src="Image/image1.jpg" />
+          <div class="download">
+            <a href="Images/nature-image.jpg" download="nettect.jpg" onclick="highlightContainer(this)">
+              <i class="fa fa-download"></i>
+            </a>
+          </div>
+        </div>
+        <div class="pic anime">
+          <img src="Image/image1.jpg" />
+          <div class="download">
+            <a href="Images/anime-image.jpg" download="nettect.jpg" onclick="highlightContainer(this)">
+              <i class="fa fa-download"></i>
+            </a>
+          </div>
+        </div>
+        <div class="pic cute">
+          <img src="Image/image1.jpg" />
+          <div class="download">
+            <a href="Images/image4.jpg" download="nettect.jpg" onclick="highlightContainer(this)">
+              <i class="fa fa-download"></i>
+            </a>
+          </div>
+        </div>
+        <div class="pic black">
+          <img src="Image/image1.jpg" />
+          <div class="download">
+            <a href="Images/image4.jpg" download="image4.jpg" onclick="highlightContainer(this)">
+              <i class="fa fa-download"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-1 my-2">
+    <ul class="nav justify-content-end pb-1 mb-1">
+      <li class="nav-item">
+        <a href="https://twitter.com/" class="nav-link px-2"><i class="fa fa-twitter"
+            style="font-size: 30px; color: #3b79cb;"></i></a>
+      </li>
+      <li class="nav-item">
+        <a href="https://www.instagram.com/_shubham_0309/" class="nav-link px-2 text-dark"><i class="fa fa-instagram"
+            style="font-size: 30px; color: #3b79cb;"></i></a>
+      </li>
+      <li class="nav-item">
+        <a href="https://www.facebook.com/" class="nav-link px-2"><i class="fa fa-facebook-square"
+            style="font-size: 30px; color: #3b79cb;"></i></a>
+      </li>
+      <li class="nav-item">
+        <a href="tel:+919029868797" class="nav-link px-2"><i class="fa fa-phone"
+            style="font-size: 30px; color: #3b79cb;"></i></a>
+      </li>
+      <li class="nav-item">
+        <a href="mailto:shubham.gupta300904@gmail.com" class="nav-link px-2 text-dark"><i class="fa fa-envelope"
+            style="font-size: 30px; color: #3b79cb;"></i></a>
+      </li>
+    </ul>
+    <p class="copy text-center"><span>&copy;</span>Shubham Gupta</p>
+  </footer>
+  <script>
+    function highlightContainer(link) {
+      var picContainer = link.closest('.pic');
+      picContainer.classList.add('highlight');
+    }
+  </script>
+</body>
+
+</html>
